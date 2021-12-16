@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>ID Cards Database</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand|Roboto:300&display=swap">
+  <link rel="stylesheet" href="/static/idcards.css">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">ID Cards</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault"
+        aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <td>NISS / Card ID</td>
+                    <td>Data</td>
+                    <td>Photo</td>
+                </tr>
+            </thead>
+            <tbody>
+        {% for item in cards %}
+            <tr>
+                <td>
+                    <code><strong>{{ item.niss }}</strong></code><br>
+                    <code>{{ item.cardid }}</code>
+                </td>
+                <td>
+                    <strong>{{ item.data.surname }}</strong><br>
+                    {{ item.data.firstnames }}<br>
+                    {{ item.data.date_of_birth }}<br>
+                    {{ item.data.gender }}<br>
+                    {{ item.data.address_street_and_number }}<br>
+                    {{ item.data.address_zip }} {{ item.data.address_municipality }}
+
+                </td>
+                <td><img src="data:image/jpg;base64, {{ item.photo64 }}" alt="photo"></td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </main>
+</body>
+
+</html>
+
